@@ -1,0 +1,79 @@
+(Pdb) n
+> /home/shengjie/code/tianshou-master/examples/discrete/discrete_dqn.py(96)main()
+-> result = algorithm.run_training(
+
+> /home/shengjie/code/tianshou-master/tianshou/algorithm/algorithm_base.py(820)run_training()
+-> def run_training(self, params: TTrainerParams) -> "InfoStats":
+(Pdb) n
+> /home/shengjie/code/tianshou-master/tianshou/algorithm/algorithm_base.py(821)run_training()
+-> trainer = self.create_trainer(params)
+--Call--
+> /home/shengjie/code/tianshou-master/tianshou/algorithm/algorithm_base.py(872)create_trainer()
+-> def create_trainer(self, params: "OffPolicyTrainerParams") -> "OffPolicyTrainer":
+
+> /home/shengjie/code/tianshou-master/tianshou/algorithm/algorithm_base.py(875)create_trainer()
+-> return OffPolicyTrainer(self, params)
+(Pdb) s
+--Call--
+> /home/shengjie/code/tianshou-master/tianshou/trainer.py(821)__init__()
+-> def __init__(
+
+> /home/shengjie/code/tianshou-master/tianshou/algorithm/algorithm_base.py(822)run_training()
+-> return trainer.run()
+(Pdb) s
+--Call--
+> /home/shengjie/code/tianshou-master/tianshou/trainer.py(736)run()
+-> def run(
+
+> /home/shengjie/code/tianshou-master/tianshou/trainer.py(749)run()
+-> self.reset(
+(Pdb) n
+Initial test step: test_reward: 10.390000 ± 1.165290, best_reward: 10.390000 ± 1.165290 in #0
+> /home/shengjie/code/tianshou-master/tianshou/trainer.py(753)run()
+-> while self._epoch < self.params.max_epochs and not self._stop_fn_flag:
+
+> /home/shengjie/code/tianshou-master/tianshou/trainer.py(754)run()
+-> self.execute_epoch()
+(Pdb) s
+--Call--
+> /home/shengjie/code/tianshou-master/tianshou/trainer.py(557)execute_epoch()
+-> def execute_epoch(self) -> EpochStats:
+
+> /home/shengjie/code/tianshou-master/tianshou/trainer.py(571)execute_epoch()
+-> training_step_result = self._training_step()
+(Pdb) s
+--Call--
+> /home/shengjie/code/tianshou-master/tianshou/trainer.py(878)_training_step()
+-> def _training_step(self) -> _TrainingStepResult:
+
+(Pdb) self.algorithm.policy
+DiscreteQLearningPolicy(
+  (model): Net(
+    (model): MLP(
+      (model): Sequential(
+        (0): Linear(in_features=4, out_features=128, bias=True)
+        (1): ReLU()
+        (2): Linear(in_features=128, out_features=128, bias=True)
+        (3): ReLU()
+        (4): Linear(in_features=128, out_features=128, bias=True)
+        (5): ReLU()
+        (6): Linear(in_features=128, out_features=2, bias=True)
+      )
+    )
+  )
+)
+
+(Pdb) s
+> /home/shengjie/code/tianshou-master/tianshou/trainer.py(919)_collect_training_data()
+-> collect_stats = self.params.train_collector.collect(
+(Pdb) s
+--Call--
+> /home/shengjie/code/tianshou-master/tianshou/data/collector.py(461)collect()
+-> def collect(
+
+> /home/shengjie/code/tianshou-master/tianshou/data/collector.py(501)collect()
+-> collect_stats = self._collect(
+(Pdb) s
+--Call--
+> /home/shengjie/code/tianshou-master/tianshou/data/collector.py(770)_collect()
+-> def _collect(  # noqa: C901
