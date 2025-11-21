@@ -22,17 +22,17 @@ for episode in range(3):
     episode_rewards = 0
     step = 0 # 计数 多少步
     while True:
-        step += 1
         state_tensor = torch.FloatTensor(state).cuda()
         action, log_prod = agent.choose_action(state_tensor)
 
         next_state,reward,done, truncated ,_ = env.step(action)
 
         episode_rewards += reward
+        state = next_state
+        step += 1
 
         if done or truncated or step > 1500 : break
-        state = next_state
-        # INSERT_YOUR_CODE
+        
     print(f"Episode: {episode}, Total Reward: {episode_rewards:.4f}, Total Step: {step}")
 
 env.close()

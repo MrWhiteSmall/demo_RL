@@ -53,7 +53,7 @@ class Agent:
         # self.episode_max_steps = 16  # 每回合最大步数
         # self.total_train_steps = 200 # 总训练"步"
         self.inner_loop_times = 5
-        self.save_freq = 1 # 每多少轮保存一次模型
+        self.save_freq = 10 # 每多少轮保存一次模型
         self.clip = 0.2 # PPO裁剪系数
 
     def choose_action(self, state):
@@ -132,8 +132,8 @@ class Agent:
             train_times += 1
 
             # 先用critic给出当前（采集过的动作）的价值估计
-            bz_value, cur_log_prod = self.eval(batch_state, batch_action)
-            # 计算优势A(s,a)
+            bz_value, _ = self.eval(batch_state, batch_action)
+            # 计算优势A(s,a)  当前actor的奖励 - 预测的奖励 == 优势
             adv = batch_rtgs - bz_value.detach()
             # 优势归一化
             adv = (adv - adv.mean()) / (adv.std() + 1e-10)

@@ -172,8 +172,7 @@ swig==4.2.0
 sympy==1.14.0
 tensorboard==2.15.1
 tensorboard-data-server==0.7.2
-# Editable Git install with no remote (tianshou==2.0.0b2)
--e /home/shengjie/code/tianshou-master
+-e git+ssh://git@gitee.com/lushengjie/demo_RL.git@4a35118f449756e7eda929cfba5f9ddc9814ec6c#egg=tianshou
 tomlkit==0.13.3
 torch @ file:///mnt/nas/shengjie/wheel_pip/torch-2.7.1+cu126-cp311-cp311-manylinux_2_28_x86_64.whl
 torchaudio @ file:///mnt/nas/shengjie/wheel_pip/torchaudio-2.7.1+cu126-cp311-cp311-manylinux_2_28_x86_64.whl

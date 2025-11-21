@@ -32,6 +32,7 @@ for episode in range(3):
 
     while True:
         action = agent.choose_action(state)
+        
         next_state, reward, done, _, _ = test_env.step(action)
 
         total_reward += reward
